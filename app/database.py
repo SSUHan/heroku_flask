@@ -9,7 +9,7 @@ class DBManager:
         db = SQLAlchemy(app)
         # migrate = Migrate(app, db)
         DBManager.db = db
-        from app.model import *
+        from app.model import user
 
     @staticmethod
     def init_db():

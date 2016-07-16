@@ -4,14 +4,14 @@ def create_app():
     app = Flask(__name__)
 
     # Init Config
-    from config.appConfig import AppConfig
+    from app.config.appConfig import AppConfig
     app.config.from_object(AppConfig)
 
     #init routes
     from app.routes import controller
 
     # Init Database
-    from database import DBManager
+    from app.database import DBManager
     DBManager.init(app)
 
     # Init Flask-restless
