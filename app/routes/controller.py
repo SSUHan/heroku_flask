@@ -5,6 +5,10 @@ from flask import jsonify, render_template
 def index():
 	return render_template('index.html')
 
+@basic.route('/<name>')
+def index_into(name):
+	return render_template(name)
+
 @basic.route('/data')
 def data():
 	data = {"names": ["John", "Jacob", "Julie", "Jennifer"]}
