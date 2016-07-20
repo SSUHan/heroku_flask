@@ -1,30 +1,21 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/mytest?charset=utf8'
+app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db = SQLAlchemy(app)
 
-    # Init Config
-    from app.config.appConfig import AppConfig
-    app.config.from_object(AppConfig)
+from app.restless import initRestlessApi
+initRestlessApi(app)
 
-    #init routes
-    from app.routes import controller
-
-    # Init Database
-    from app.database import DBManager
-    DBManager.init(app)
-
-    # Init Flask-restless
-    from app.restless import initRestlessApi
-    initRestlessApi(app)
-
-    # Init Blueprint
-    from app.blueprint import basic
-    app.register_blueprint(basic)
+from app.blueprint import basic
+app.register_blueprint(basic)
 
 
+from app.model import *
+from app.routes import *
 
-
-
-    return app
+db.create_all()
 

@@ -2,4 +2,6 @@
 # -*- coding: utf-8 -*-
 import os
 class AppConfig(object):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)) + "/../", 'task.db')
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/mytest?charset=utf8'
+    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True

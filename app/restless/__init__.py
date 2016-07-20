@@ -1,6 +1,6 @@
 from app.database import DBManager
 from app.model.user import User
-from flask.ext.restless import APIManager
+from flask_restless import APIManager
 
 def initRestlessApi(app):
     manager = APIManager(app, flask_sqlalchemy_db=DBManager.db)
