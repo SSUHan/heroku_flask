@@ -34,10 +34,14 @@ def db_insert():
 	return string
 
 @app.route('/su_point/show_users')
-def show_users():
+def show_users_by_admin():
 	queries = User.query.all()
 
 	entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in queries]
 	print(entries)
 
 	return render_template('show_all.html', users=queries)
+
+@app.route('/su_point/add_user')
+def add_users_by_admin():
+	return render_template('add_user.html')
