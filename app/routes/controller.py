@@ -32,3 +32,12 @@ def db_insert():
 	for item in output:
 		string = string + item.user_id + " " + item.user_name + "<br>"
 	return string
+
+@app.route('/su_point/show_users')
+def show_users():
+	queries = User.query.all()
+
+	entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in queries]
+	print(entries)
+
+	return render_template('show_all.html', users=queries)

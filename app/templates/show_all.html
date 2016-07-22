@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+
+      <h3>
+         Users Infomation
+      </h3>
+
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+      <h3>Users</h3>
+
+      <table border="1">
+         <thead>
+            <tr>
+               <th>User ID</th>
+               <th>User Name</th>
+               <th>User Point</th>
+               <th>Created</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for user in users %}
+               <tr>
+                  <td>{{ user.user_id }}</td>
+                  <td>{{ user.user_name }}</td>
+                  <td>{{ user.point }}</td>
+                  <td>{{ user.created }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+   </body>
+</html>
