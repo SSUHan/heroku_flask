@@ -2,11 +2,12 @@ from app import app
 from flask import jsonify, render_template, request, redirect, flash, url_for
 from app import db
 from app.model.user import User
+from app.job.user import find_user
 
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	return render_template('../index.html')
 
 @app.route('/<name>')
 def index_into(name):
@@ -36,23 +37,40 @@ def db_insert():
 @app.route('/su_point/show_users')
 def show_users_by_admin():
 	queries = User.query.all()
+	#print(queries.user_id)
 
 	entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in queries]
+	#print(jsonify(entries))
 	print(entries)
 
 	return render_template('show_all.html', users=queries)
 
 @app.route('/su_point/add_user', methods=['GET', 'POST'])
-def add_user_by_admin():
+def add_user():
 	# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 	if request.method == 'POST':
-		if not request.form['user_id'] or not request.form['user_name']:
+		user_id = request.form['user_id']
+		if not user_id or not request.form['user_name']:
 			flash('Please enter all the fields', 'error')
 		else:
-			user = User(request.form['user_id'], request.form['user_name'], request.form['point'])
-			db.session.add(user)
-			db.session.commit()
+			user = find_user(user_id)
+			if not user:
+				user = User(user_id, request.form['user_name'], request.form['point'])
+				db.session.add(user)
+				db.session.commit()
 
-			flash('Record was successfully added!')
-			return redirect(url_for('show_users_by_admin'))
+				flash('Record was successfully added!', 'success')
+				return redirect(url_for('show_users_by_admin'))
+			else:
+				flash('This ID already exist in server', 'fail')
 	return render_template('add_user.html')
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+	if request.method == 'POST':
+		user = find_user(request.form['user_id'])
+		if user:
+			return user.user_id
+		else:
+			return "no user in db"
+	return "do post"

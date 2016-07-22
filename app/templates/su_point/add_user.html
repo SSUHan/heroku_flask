@@ -11,7 +11,7 @@
          </div>
       {%- endfor %}
 
-      <form action = "{{ url_for('add_user_by_admin') }}" method = "post">
+      <form action = "{{ url_for('add_user') }}" method = "post">
          <label>User ID</label><br>
          <input type = "text" name = "user_id" placeholder = "user_id" /><br>
          <label>User Name</label><br>
