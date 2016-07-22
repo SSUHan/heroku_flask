@@ -7,7 +7,7 @@ from app.job.user import find_user_by_id, check_admin, do_join
 
 @app.route('/')
 def index():
-	return render_template('../index.html')
+	return "hello im junsu"
 
 @app.route('/<name>')
 def index_into(name):
