@@ -2,7 +2,7 @@ from app import app
 from flask import jsonify, render_template, request, redirect, flash, url_for
 from app import db
 from app.model.user import User
-from app.job.user import find_user, check_admin
+from app.job.user import find_user_by_id, check_admin, do_join
 
 
 @app.route('/')
@@ -49,20 +49,19 @@ def show_users_by_admin():
 def add_user():
 	# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 	if request.method == 'POST':
-		user_id = request.form['user_id']
-		if not user_id or not request.form['user_name'] or not request.form['permission']:
-			flash('Please enter all the fields', 'error')
-		else:
-			user = find_user(user_id)
-			if not user:
-				user = User(user_id, request.form['user_name'], request.form['point'], request.form['permission'])
-				db.session.add(user)
-				db.session.commit()
-
+		# web 에서 로그인할 경우에
+		if request.form['source'] == 'web':
+			print("in web")
+			result = do_join(request)
+			if result == -1:
+				flash('Please enter all the fields', 'error')
+			elif result == 0:
+				flash('This ID already exist in server', 'fail')
+			elif result == 1:
 				flash('Record was successfully added!', 'success')
 				return redirect(url_for('show_users_by_admin'))
-			else:
-				flash('This ID already exist in server', 'fail')
+		elif request.form['source'] == 'mobile':
+			result = do_join(request)
 	return render_template('add_user.html')
 
 @app.route('/test', methods=['GET', 'POST'])
