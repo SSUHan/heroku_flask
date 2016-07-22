@@ -12,11 +12,17 @@ class User(db.Model):
     permission = db.Column(db.String(20))
     created = db.Column(db.DateTime)
 
-    def __init__(self, user_id, user_name, point, permission='normal'):
+    def __init__(self, user_id, user_name, point, permission):
         self.user_id = user_id
         self.user_name = user_name
-        self.point = point
-        self.permission = permission
+        if point:
+            self.point = point
+        else:
+            self.point = 0
+        if permission:
+            self.permission = permission
+        else:
+            self.permission = 'normal'
         self.created = datetime.now()
 
     def __repr__(self):

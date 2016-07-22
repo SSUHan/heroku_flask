@@ -2,7 +2,7 @@ from app import app
 from flask import jsonify, render_template, request, redirect, flash, url_for
 from app import db
 from app.model.user import User
-from app.job.user import find_user
+from app.job.user import find_user, check_admin
 
 
 @app.route('/')
@@ -50,12 +50,12 @@ def add_user():
 	# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 	if request.method == 'POST':
 		user_id = request.form['user_id']
-		if not user_id or not request.form['user_name']:
+		if not user_id or not request.form['user_name'] or not request.form['permission']:
 			flash('Please enter all the fields', 'error')
 		else:
 			user = find_user(user_id)
 			if not user:
-				user = User(user_id, request.form['user_name'], request.form['point'])
+				user = User(user_id, request.form['user_name'], request.form['point'], request.form['permission'])
 				db.session.add(user)
 				db.session.commit()
 
@@ -67,10 +67,7 @@ def add_user():
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-	if request.method == 'POST':
-		user = find_user(request.form['user_id'])
-		if user:
-			return user.user_id
-		else:
-			return "no user in db"
-	return "do post"
+	if check_admin(request.form['user_id']):
+		return "yes admin"
+	else:
+		return "no admin"
