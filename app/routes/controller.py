@@ -1,5 +1,5 @@
 from app import app
-from flask import jsonify, render_template, request
+from flask import jsonify, render_template, request, redirect, flash, url_for
 from app import db
 from app.model.user import User
 
@@ -42,6 +42,17 @@ def show_users_by_admin():
 
 	return render_template('show_all.html', users=queries)
 
-@app.route('/su_point/add_user')
-def add_users_by_admin():
+@app.route('/su_point/add_user', methods=['GET', 'POST'])
+def add_user_by_admin():
+	# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
+	if request.method == 'POST':
+		if not request.form['user_id'] or not request.form['user_name']:
+			flash('Please enter all the fields', 'error')
+		else:
+			user = User(request.form['user_id'], request.form['user_name'], request.form['point'])
+			db.session.add(user)
+			db.session.commit()
+
+			flash('Record was successfully added!')
+			return redirect(url_for('show_users_by_admin'))
 	return render_template('add_user.html')

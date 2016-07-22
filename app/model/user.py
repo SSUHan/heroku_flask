@@ -9,12 +9,14 @@ class User(db.Model):
     user_id = db.Column(db.String(30), primary_key=True, unique=True)
     user_name = db.Column(db.String(30))
     point = db.Column(db.Integer)
+    permission = db.Column(db.String(20))
     created = db.Column(db.DateTime)
 
-    def __init__(self, user_id, user_name, point):
+    def __init__(self, user_id, user_name, point, permission='normal'):
         self.user_id = user_id
         self.user_name = user_name
         self.point = point
+        self.permission = permission
         self.created = datetime.now()
 
     def __repr__(self):
