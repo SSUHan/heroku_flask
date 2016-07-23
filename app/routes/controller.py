@@ -70,3 +70,20 @@ def test():
 		return "yes admin"
 	else:
 		return "no admin"
+@app.route('/test/gcm_test', methods=['POST'])
+def gcm_test():
+	from gcm import GCM
+	from gcm.gcm import GCMException
+	sender = GCM('AIzaSyA9jPIJgBlHOa3g7nVaYTNBGK1V24Lpo14')
+	reg_id = list()
+	reg_id.append(request.form['reg_id'])
+	title = request.form['title']
+	message = request.form['message']
+	noti_type = request.form['notification_type']
+	data = {'title': title, 'message': message, 'notification_type': noti_type}
+
+	result = sender.json_request(registration_ids=reg_id, data=data)
+
+	print(result)
+	return "hh"
+
