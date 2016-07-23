@@ -1,6 +1,5 @@
-from app import app
+from app import app, db
 from flask import jsonify, render_template, request, redirect, flash, url_for
-from app import db
 from app.model.user import User
 from app.job.user import find_user_by_id, check_admin, do_join, do_login
 from app.config.appConfig import PreDefine
@@ -101,18 +100,17 @@ def test():
 
 @app.route('/test/gcm_test', methods=['POST'])
 def gcm_test():
-	from gcm import GCM
-	from gcm.gcm import GCMException
-	sender = GCM('AIzaSyA9jPIJgBlHOa3g7nVaYTNBGK1V24Lpo14')
-	reg_id = list()
-	reg_id.append(request.form['reg_id'])
-	title = request.form['title']
-	message = request.form['message']
-	noti_type = request.form['notification_type']
-	data = {'title': title, 'message': message, 'notification_type': noti_type}
+	from app.job.gcm import push_gcm_message
 
-	result = sender.json_request(registration_ids=reg_id, data=data)
+	reg_ids = list()
+	reg_ids.append(request.form['reg_id'])
 
+	result = push_gcm_message(reg_ids, request.form['title'], request.form['message'], request.form['notification_type'])
 	print(result)
-	return jsonify(request)
+	try:
+		print(result['success'])
+		print(result['error'])
+	except Exception:
+		print("in exception")
+	return jsonify(result)
 
