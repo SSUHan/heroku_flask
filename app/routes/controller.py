@@ -2,7 +2,8 @@ from app import app
 from flask import jsonify, render_template, request, redirect, flash, url_for
 from app import db
 from app.model.user import User
-from app.job.user import find_user_by_id, check_admin, do_join
+from app.job.user import find_user_by_id, check_admin, do_join, do_login
+from app.config.appConfig import PreDefine
 
 
 @app.route('/')
@@ -45,12 +46,14 @@ def show_users_by_admin():
 
 	return render_template('show_all.html', users=queries)
 
+# 회원 가입
 @app.route('/su_point/add_user', methods=['GET', 'POST'])
 def add_user():
-	# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
+	
 	if request.method == 'POST':
 		# web 에서 로그인할 경우에
-		if request.form['source'] == 'web':
+		if request.form[PreDefine.source] == PreDefine.source_web:
+			# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 			print("in web")
 			result = do_join(request)
 			if result == -1:
@@ -60,7 +63,7 @@ def add_user():
 			elif result == 1:
 				flash('Record was successfully added!', 'success')
 				return redirect(url_for('show_users_by_admin'))
-		elif request.form['source'] == 'mobile':
+		elif request.form[PreDefine.source] == PreDefine.source_mobile:
 			print("in mobile")
 			result = do_join(request)
 			to_client = dict()
@@ -77,12 +80,25 @@ def add_user():
 
 	return render_template('add_user.html')
 
+@app.route('/su_point/login', methods=['POST'])
+def login_user():
+	if request.method == 'POST':
+		if request.form[PreDefine.source] == PreDefine.source_mobile:
+			to_client = dict()
+			to_client['login'], to_client['message'], user = do_login(request)
+			if user:
+				to_client['permission'] = user.permission
+
+		return jsonify(to_client)
+	return "login html would be placed"
+
 @app.route('/test', methods=['GET', 'POST'])
 def test():
 	if check_admin(request.form['user_id']):
 		return "yes admin"
 	else:
 		return "no admin"
+
 @app.route('/test/gcm_test', methods=['POST'])
 def gcm_test():
 	from gcm import GCM
@@ -98,5 +114,5 @@ def gcm_test():
 	result = sender.json_request(registration_ids=reg_id, data=data)
 
 	print(result)
-	return "hh"
+	return jsonify(request)
 

@@ -11,6 +11,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql-root@localho
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = 'manyrandombyte'
+
+
+
 db = SQLAlchemy(app)
 
 from app.restless import initRestlessApi
@@ -22,6 +25,7 @@ app.register_blueprint(basic)
 
 from app.model import *
 from app.routes import *
+from app.config import *
 
 db.create_all()
 

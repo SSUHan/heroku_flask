@@ -10,9 +10,10 @@ class User(db.Model):
     user_name = db.Column(db.String(30))
     point = db.Column(db.Integer)
     permission = db.Column(db.String(20))
+    user_pw = db.Column(db.String(30))
     created = db.Column(db.DateTime)
 
-    def __init__(self, user_id, user_name, point, permission):
+    def __init__(self, user_id, user_name, point, permission, user_pw):
         self.user_id = user_id
         self.user_name = user_name
         if point:
@@ -23,6 +24,7 @@ class User(db.Model):
             self.permission = permission
         else:
             self.permission = 'normal'
+        self.user_pw = user_pw
         self.created = datetime.now()
 
     def __repr__(self):
