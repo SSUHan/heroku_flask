@@ -61,7 +61,20 @@ def add_user():
 				flash('Record was successfully added!', 'success')
 				return redirect(url_for('show_users_by_admin'))
 		elif request.form['source'] == 'mobile':
+			print("in mobile")
 			result = do_join(request)
+			to_client = dict()
+			if result == -1:
+				to_client['join'] = False
+				to_client['message'] = "필요한 정보가 모두 입력되지 않았습니다"
+			elif result == 0:
+				to_client['join'] = False
+				to_client['message'] = "중복된 아이디가 존재합니다"
+			elif result == 1:
+				to_client['join'] = True
+				to_client['message'] = "회원가입에 성공하였습니다"
+			return jsonify(to_client)
+
 	return render_template('add_user.html')
 
 @app.route('/test', methods=['GET', 'POST'])
