@@ -1,2 +1,3 @@
 __all__ = ['user',
-           'gcm']
+           'gcm',
+           'friend']

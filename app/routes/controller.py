@@ -91,6 +91,30 @@ def login_user():
 		return jsonify(to_client)
 	return "login html would be placed"
 
+@app.route('/su_point/add_friend', methods=['POST'])
+def add_friend():
+	from app.job.friend import add_friend
+	to_client = dict()
+	to_client['add_friend'], to_client['message'] = add_friend(request.form['user_id'], request.form['friend_id'])
+	return jsonify(to_client)
+
+
+@app.route('/su_point/find_friends', methods=['POST'])
+def find_friends():
+	from app.job.friend import find_friends
+	friends = find_friends(request.form['user_id'])
+	print(friends)
+	to_client = dict()
+	if friends:
+		to_client['find_friends'] = True
+		to_client['friend_list'] = list()
+		for item in friends:
+			to_client['friend_list'].append(item.friend_id)
+
+	else:
+		to_client['find_friends'] = False
+	return jsonify(to_client)
+
 @app.route('/test', methods=['GET', 'POST'])
 def test():
 	if check_admin(request.form['user_id']):

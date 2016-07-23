@@ -13,3 +13,4 @@ class Friend(db.Model):
         self.user_id = user_id
         self.friend_id = friend_id
         self.created = datetime.now()
+
