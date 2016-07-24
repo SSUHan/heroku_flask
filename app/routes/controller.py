@@ -147,7 +147,8 @@ def gcm_test():
 	value = request.json
 	reg_ids = list()
 	if value:
-		reg_ids.append(value['friend_id'])
+		#reg_ids.append(value['friend_id'])
+		reg_ids.append('d_WAsnGB_RA:APA91bFzIAokbPGpfVM_wjTLcfVaC_ElQLCkaT4HjqKLqHd2ZR8juIneBw2uBvM3i3MFS5N9VFyidFE-ar4mEifTFC1cuyk8q4QyChIHvOoyIkzK9e002m15tk0MkCg6ju1E_dJRxFwj')
 		result = push_gcm_message(reg_ids, "SuPoint", "열심히좀 하자 친구야!", True)
 	else:
 		reg_ids.append(request.form['reg_id'])
