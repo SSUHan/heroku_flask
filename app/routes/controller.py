@@ -52,6 +52,7 @@ def add_user():
 	if request.method == 'POST':
 		# web 에서 로그인할 경우에
 		if request.form[PreDefine.source] == PreDefine.source_web:
+		#if request.form['source'] == "web":
 			# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 			print("in web")
 			result = do_join(request)
@@ -61,10 +62,12 @@ def add_user():
 				flash('This ID already exist in server', 'fail')
 			elif result == 1:
 				flash('Record was successfully added!', 'success')
-				return redirect(url_for('show_users_by_admin'))
+			return redirect(url_for('show_users_by_admin'))
 		elif request.form[PreDefine.source] == PreDefine.source_mobile:
-			print("in mobile")
+		#elif request.form['source'] == "mobile":
+			#print("in mobile")
 			result = do_join(request)
+			#print("after join")
 			to_client = dict()
 			if result == -1:
 				to_client['join'] = False

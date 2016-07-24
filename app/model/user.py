@@ -15,7 +15,10 @@ class User(db.Model):
 
     def __init__(self, user_id, user_name, point, permission, user_pw):
         self.user_id = user_id
-        self.user_name = user_name
+        if user_name:
+            self.user_name = user_name
+        else:
+            self.user_name = '사용자'
         if point:
             self.point = point
         else:
