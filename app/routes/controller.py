@@ -50,8 +50,8 @@ def show_users_by_admin():
 def add_user():
 	
 	if request.method == 'POST':
-		value = request.get_json()
-		return value
+		value = request.json()
+
 		# web 에서 로그인할 경우에
 		if request.form[PreDefine.source] == PreDefine.source_web:
 		#if request.form['source'] == "web":
@@ -65,9 +65,10 @@ def add_user():
 			elif result == 1:
 				flash('Record was successfully added!', 'success')
 			return redirect(url_for('show_users_by_admin'))
-		elif request.form[PreDefine.source] == PreDefine.source_mobile:
-		#elif request.form['source'] == "mobile":
+		#elif request.form[PreDefine.source] == PreDefine.source_mobile:
+		elif value['source'] == "mobile":
 			#print("in mobile")
+			return jsonify(value)
 			result = do_join(request)
 			#print("after join")
 			to_client = dict()
