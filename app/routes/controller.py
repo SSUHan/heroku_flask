@@ -91,7 +91,8 @@ def login_user():
 		to_client = dict()
 		if value:
 			to_client['login'], to_client['message'], user = do_login_by_mobile(value)
-			to_client['permission'] = user.permission
+			if user:
+				to_client['permission'] = user.permission
 			return jsonify(to_client)
 		elif request.form[PreDefine.source] == PreDefine.source_mobile:
 			to_client['login'], to_client['message'], user = do_login(request)
@@ -112,9 +113,8 @@ def add_friend():
 @app.route('/su_point/find_friends', methods=['POST'])
 def find_friends():
 	from app.job.friend import find_friends
-
-	friends = find_friends(request.form['user_id'])
-
+	value = request.json
+	friends = find_friends(value['user_id'])
 	to_client = dict()
 	if friends:
 		to_client['find_friends'] = True
@@ -144,11 +144,14 @@ def test():
 @app.route('/test/gcm_test', methods=['POST'])
 def gcm_test():
 	from app.job.gcm import push_gcm_message
-
+	value = request.json
 	reg_ids = list()
-	reg_ids.append(request.form['reg_id'])
-
-	result = push_gcm_message(reg_ids, request.form['title'], request.form['message'], request.form['notification_type'])
+	if value:
+		reg_ids.append(value['friend_id'])
+		result = push_gcm_message(reg_ids, "SuPoint", "열심히좀 하자 친구야!", True)
+	else:
+		reg_ids.append(request.form['reg_id'])
+		result = push_gcm_message(reg_ids, request.form['title'], request.form['message'], request.form['notification_type'])
 	print(result)
 	try:
 		print(result['success'])
