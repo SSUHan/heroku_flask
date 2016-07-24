@@ -48,12 +48,24 @@ def show_users_by_admin():
 # 회원 가입
 @app.route('/su_point/add_user', methods=['GET', 'POST'])
 def add_user():
-	
+	from app.job.user import do_join_in_mobile
 	if request.method == 'POST':
-		value = request.json()
-
-		# web 에서 로그인할 경우에
-		if request.form[PreDefine.source] == PreDefine.source_web:
+		value = request.json
+		to_client = dict()
+		if value:
+			result = do_join_in_mobile(value)
+			if result == -1:
+				to_client['join'] = False
+				to_client['message'] = "필요한 정보가 모두 입력되지 않았습니다"
+			elif result == 0:
+				to_client['join'] = False
+				to_client['message'] = "중복된 아이디가 존재합니다"
+			elif result == 1:
+				to_client['join'] = True
+				to_client['message'] = "회원가입에 성공하였습니다"
+			return jsonify(to_client)
+			# web 에서 로그인할 경우에
+		elif request.form[PreDefine.source] == PreDefine.source_web:
 		#if request.form['source'] == "web":
 			# TODO : 어드민 계정으로 들어왓는지를 먼저 확인해야함
 			print("in web")
@@ -65,31 +77,23 @@ def add_user():
 			elif result == 1:
 				flash('Record was successfully added!', 'success')
 			return redirect(url_for('show_users_by_admin'))
-		#elif request.form[PreDefine.source] == PreDefine.source_mobile:
-		elif value['source'] == "mobile":
-			#print("in mobile")
-			return jsonify(value)
-			result = do_join(request)
-			#print("after join")
-			to_client = dict()
-			if result == -1:
-				to_client['join'] = False
-				to_client['message'] = "필요한 정보가 모두 입력되지 않았습니다"
-			elif result == 0:
-				to_client['join'] = False
-				to_client['message'] = "중복된 아이디가 존재합니다"
-			elif result == 1:
-				to_client['join'] = True
-				to_client['message'] = "회원가입에 성공하였습니다"
-			return jsonify(to_client)
+
+
+
 
 	return render_template('add_user.html')
 
 @app.route('/su_point/login', methods=['POST'])
 def login_user():
+	from app.job.user import do_login_by_mobile
 	if request.method == 'POST':
-		if request.form[PreDefine.source] == PreDefine.source_mobile:
-			to_client = dict()
+		value = request.json
+		to_client = dict()
+		if value:
+			to_client['login'], to_client['message'], user = do_login_by_mobile(value)
+			to_client['permission'] = user.permission
+			return jsonify(to_client)
+		elif request.form[PreDefine.source] == PreDefine.source_mobile:
 			to_client['login'], to_client['message'], user = do_login(request)
 			if user:
 				to_client['permission'] = user.permission
