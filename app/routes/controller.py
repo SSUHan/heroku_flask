@@ -105,8 +105,12 @@ def login_user():
 @app.route('/su_point/add_friend', methods=['POST'])
 def add_friend():
 	from app.job.friend import add_friend
+	value = request.json
 	to_client = dict()
-	to_client['add_friend'], to_client['message'] = add_friend(request.form['user_id'], request.form['friend_id'])
+	if value:
+		to_client['add_friend'], to_client['message'] = add_friend(value['user_id'], value['friend_id'])
+	else:
+		to_client['add_friend'], to_client['message'] = add_friend(request.form['user_id'], request.form['friend_id'])
 	return jsonify(to_client)
 
 
