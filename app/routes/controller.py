@@ -7,7 +7,7 @@ from app.config.appConfig import PreDefine
 
 @app.route('/')
 def index():
-	return "hello im junsu"
+	return render_template('index.html')
 
 @app.route('/<name>')
 def index_into(name):
@@ -34,16 +34,25 @@ def db_insert():
 		string = string + item.user_id + " " + item.user_name + "<br>"
 	return string
 
-@app.route('/su_point/show_users')
+@app.route('/su_point/admin_login')
+def admin_login():
+	return render_template('login.html')
+
+@app.route('/su_point/show_users', methods=['GET', 'POST'])
 def show_users_by_admin():
-	queries = User.query.all()
-	#print(queries.user_id)
+	if request.method == 'POST':
+		is_user = do_login(request)
+		is_admin = check_admin(request.form['user_id'])
+		if is_user and is_admin:
+			queries = User.query.all()
+			#print(queries.user_id)
 
-	entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in queries]
-	#print(jsonify(entries))
-	print(entries)
+			entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in queries]
+			#print(jsonify(entries))
+			print(entries)
 
-	return render_template('show_all.html', users=queries)
+			return render_template('show_all.html', users=queries)
+	return render_template('page_locked.html')
 
 # 회원 가입
 @app.route('/su_point/add_user', methods=['GET', 'POST'])
