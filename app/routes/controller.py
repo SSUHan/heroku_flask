@@ -50,6 +50,8 @@ def show_users_by_admin():
 def add_user():
 	
 	if request.method == 'POST':
+		value = request.get_json()
+		return value
 		# web 에서 로그인할 경우에
 		if request.form[PreDefine.source] == PreDefine.source_web:
 		#if request.form['source'] == "web":
