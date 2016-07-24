@@ -52,6 +52,8 @@ def show_users_by_admin():
 			print(entries)
 
 			return render_template('show_all.html', users=queries)
+		else:
+			return render_template('login.html')
 	return render_template('page_locked.html')
 
 # 회원 가입
