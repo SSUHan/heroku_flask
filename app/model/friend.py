@@ -1,5 +1,8 @@
+from flask import json
+import json
 from app import db
 from datetime import datetime
+
 
 class Friend(db.Model):
     __tablename__ = 'su_friend'
@@ -13,4 +16,5 @@ class Friend(db.Model):
         self.user_id = user_id
         self.friend_id = friend_id
         self.created = datetime.now()
+
 

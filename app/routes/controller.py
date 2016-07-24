@@ -102,14 +102,23 @@ def add_friend():
 @app.route('/su_point/find_friends', methods=['POST'])
 def find_friends():
 	from app.job.friend import find_friends
+
 	friends = find_friends(request.form['user_id'])
-	print(friends)
+
 	to_client = dict()
 	if friends:
 		to_client['find_friends'] = True
 		to_client['friend_list'] = list()
 		for item in friends:
-			to_client['friend_list'].append(item.friend_id)
+			user_info = find_user_by_id(item.friend_id)
+			new_item = dict()
+			new_item['user_id'] = item.user_id
+			new_item['friend_id'] = item.friend_id
+			new_item['friend_name'] = user_info.user_name
+			new_item['point'] = user_info.point
+			to_client['friend_list'].append(new_item)
+
+		print(to_client)
 
 	else:
 		to_client['find_friends'] = False
