@@ -1,7 +1,7 @@
 from app import app, db
 from flask import jsonify, render_template, request, redirect, flash, url_for
-from app.job.user import find_user_by_id, check_admin, do_join, do_login
-from app.model.user import User
+from app.job.su_point.user import find_user_by_id, check_admin, do_join, do_login
+from app.model.su_point.user import User
 from app.config.appConfig import PreDefine
 
 # db insert test code
@@ -46,7 +46,7 @@ def show_users_by_admin():
 # 회원 가입
 @app.route('/su_point/add_user', methods=['GET', 'POST'])
 def add_user():
-	from app.job.user import do_join_in_mobile
+	from app.job.su_point.user import do_join_in_mobile
 	if request.method == 'POST':
 		value = request.json
 		to_client = dict()
@@ -83,7 +83,7 @@ def add_user():
 
 @app.route('/su_point/login', methods=['POST'])
 def login_user():
-	from app.job.user import do_login_by_mobile
+	from app.job.su_point.user import do_login_by_mobile
 	if request.method == 'POST':
 		value = request.json
 		to_client = dict()
@@ -102,7 +102,7 @@ def login_user():
 
 @app.route('/su_point/add_friend', methods=['POST'])
 def add_friend():
-	from app.job.friend import add_friend
+	from app.job.su_point.friend import add_friend
 	value = request.json
 	to_client = dict()
 	if value:
@@ -114,7 +114,7 @@ def add_friend():
 
 @app.route('/su_point/find_friends', methods=['POST'])
 def find_friends():
-	from app.job.friend import find_friends
+	from app.job.su_point.friend import find_friends
 	value = request.json
 	friends = find_friends(value['user_id'])
 	to_client = dict()

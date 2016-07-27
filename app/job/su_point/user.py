@@ -1,4 +1,4 @@
-from app.model.user import User
+from app.model.su_point.user import User
 from app import db
 
 # 유저 찾기

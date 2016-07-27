@@ -1,8 +1,8 @@
 from app import app, db
 from flask import jsonify, render_template, request, redirect, flash, url_for
-from app.model.user import User
-from app.job.user import find_user_by_id, check_admin, do_join, do_login
-from app.config.appConfig import PreDefine
+from app.model.su_point.user import User
+from app.job.su_point.user import check_admin
+
 
 
 @app.route('/')
@@ -44,7 +44,7 @@ def test():
 
 @app.route('/test/gcm_test', methods=['POST'])
 def gcm_test():
-	from app.job.gcm import push_gcm_message
+	from app.job.su_point.gcm import push_gcm_message
 	value = request.json
 	reg_ids = list()
 	if value:

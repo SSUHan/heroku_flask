@@ -1,3 +1,1 @@
-__all__ = ['user',
-           'gcm',
-           'friend']
+__all__ = ['su_point']

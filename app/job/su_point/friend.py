@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from app import db
-from app.model.friend import Friend
+from app.model.su_point.friend import Friend
 from sqlalchemy import and_
-from app.job.user import find_user_by_id
+from app.job.su_point.user import find_user_by_id
 
 # 친구 목록을 리턴하는 함수이다
 # first 옵션을 부여하면 첫번쩨만 리턴한다
