@@ -1,1 +1,2 @@
-__all__=['controller']
+__all__=['controller',
+         'su_point']
