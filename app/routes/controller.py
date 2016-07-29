@@ -3,8 +3,6 @@ from flask import jsonify, render_template, request, redirect, flash, url_for
 from app.model.su_point.user import User
 from app.job.su_point.user import check_admin
 
-
-
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -12,6 +10,15 @@ def index():
 @app.route('/<name>')
 def index_into(name):
 	return render_template(name)
+
+@app.errorhandler(404)
+def page_not_found(e):
+	app.logger.error('Page not found %s', (request.path))
+	return "this page does not exist", 404
+
+@app.errorhandler(500)
+def page_server_error(e):
+	return render_template('page_500_option2.html'), 500
 
 @app.route('/data')
 def data():

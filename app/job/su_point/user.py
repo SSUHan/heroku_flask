@@ -13,6 +13,7 @@ def check_admin(user_id):
     else:
         return False
 
+
 def do_join(request):
     user_id = request.form['user_id']
     if not user_id or not request.form['user_name'] or not request.form['permission'] or not request.form['user_pw']:
