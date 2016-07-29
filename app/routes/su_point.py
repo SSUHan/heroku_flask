@@ -139,8 +139,7 @@ def find_friends():
 @app.route('/su_point/show_ranking', methods=['GET', 'POST'])
 def show_rankings():
 	from app.job.su_point.ranking import find_local_ranking_list
+	to_client = dict()
 	user_ranks = find_local_ranking_list()
-	entries = [dict(user_id=user.user_id, user_name=user.user_name, point=user.point, created=user.created) for user in
-			   user_ranks]
-
-	return jsonify(entries)
+	to_client['local_ranking_list'] = user_ranks
+	return jsonify(to_client)

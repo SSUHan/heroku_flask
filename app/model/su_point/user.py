@@ -33,3 +33,6 @@ class User(db.Model):
     def __repr__(self):
         return '{user_id : "%s", user_name : "%s", point : "%d"}' %\
                {self.user_id, self.user_name, self.point}
+
+    def to_dict(self):
+        return dict(user_id=self.user_id, user_name=self.user_name, point=self.point, permission=self.permission, created=self.created)
