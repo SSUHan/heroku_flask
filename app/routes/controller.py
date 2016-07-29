@@ -25,6 +25,19 @@ def data():
 	data = {"names": ["John", "Jacob", "Julie", "Jennifer"]}
 	return jsonify(data)
 
+@app.route('/echo', methods=['GET', 'POST'])
+def param_test():
+	to_client = dict()
+	if request.method == 'GET':
+		to_client['param1'] = request.args.get('param1')
+		to_client['param2'] = request.args.get('param2')
+	elif request.method == 'POST':
+		value = request.json
+		to_client['param1'] = value['param1']
+		to_client['param2'] = value['param2']
+	return jsonify(to_client)
+
+
 @app.route('/su_point/db_insert', methods=["GET"])
 def db_insert():
 	user_id = request.args.get('user_id')
