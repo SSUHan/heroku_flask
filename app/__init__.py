@@ -14,6 +14,8 @@ app.secret_key = 'manyrandombyte'
 
 
 
+
+
 db = SQLAlchemy(app)
 
 from app.restless import initRestlessApi
