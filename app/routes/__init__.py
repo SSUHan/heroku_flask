@@ -1,2 +1,3 @@
 __all__=['controller',
-         'su_point']
+         'su_point',
+         'front_task']

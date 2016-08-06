@@ -38,7 +38,7 @@ def show_users_by_admin():
 			#print(jsonify(entries))
 			print(entries)
 
-			return render_template('show_all.html', users=queries)
+			return render_template('/su_point/show_all.html', users=queries)
 		else:
 			return render_template('login.html')
 	return render_template('page_locked.html')
@@ -79,7 +79,7 @@ def add_user():
 
 
 
-	return render_template('add_user.html')
+	return render_template('/su_point/add_user.html')
 
 @app.route('/su_point/login', methods=['POST'])
 def login_user():
