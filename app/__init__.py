@@ -13,9 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.secret_key = 'manyrandombyte'
 
 
-
-
-
 db = SQLAlchemy(app)
 
 from app.restless import initRestlessApi
