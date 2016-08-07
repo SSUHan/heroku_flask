@@ -92,59 +92,7 @@ td.blout  { background:; FONT-WEIGHT: bold; FONT-SIZE: 11px; FONT-FAMILY: "verda
 .upcodename {font-family:Doutum; font-size:13px; color:#000; font-weight:bold; }
 .subcodename {font-family:Doutum; font-size:12px; color:#6c6c6c; font-weight:normal; }
 
-.choiceprlist {
-	padding:2px 9px 0 9px;
-	border-right: 1px solid #c9c9c9;
-	color:#cf2b06;
-	font-weight: bold;
-	font-size: 11px;
-}
-
-.codemenu1{
-	cursor: hand; cursor: pointer;
-	border: 1px solid #ccc;
-	height: 20px;
-	padding : 3px 25px 1px 6px;
-	#padding : 0px 25px 0px 6px;
-	background : url("/images/2010/catcodebg1.gif") no-repeat 100% 50%;
-	white-space: nowrap;
-	color:#333333;
-	
-}
-.ie10 .codemenu1{
-	padding : 4px 25px 0px 6px;
-}
-#catdownmenu{
-	visibility: hidden;
-	position: absolute;
-	z-index: 99;
-	background-color: white;
-	border: 1px solid #ccc;
-}
-#catdownmenu ul{
-	list-style-type:none;
-	margin: 0px;
-	padding : 0px;
-	#padding : 5px;
-
-}
-#catdownmenu li{
-	line-height: 14px;
-	margin: 4px;
-	padding : 0px 0px 2px 14px;
-	background : url("/images/2010/ico-bullet-arrow03.gif") no-repeat 0px 20%;
-}
-#loginpop {
-	display:none;
-}
-
-td img {
-	vertical-align: middle;
-}
-
-div img {
-	vertical-align: middle;
-}
+.choiceprlist{padding:2px 9px 0;border-right:1px solid #c9c9c9;color:#cf2b06;font-weight:700;font-size:11px}.codemenu1{cursor:hand;cursor:pointer;border:1px solid #ccc;height:20px;padding:3px 25px 1px 6px;#padding:0 25px 0 6px;background:url(/images/2010/catcodebg1.gif) no-repeat 100% 50%;white-space:nowrap;color:#333}.ie10 .codemenu1{padding:4px 25px 0 6px}#catdownmenu{visibility:hidden;position:absolute;z-index:99;background-color:#fff;border:1px solid #ccc}#catdownmenu ul{list-style-type:none;margin:0;padding:0;#padding:5px}#catdownmenu li{line-height:14px;margin:4px;padding:0 0 2px 14px;background:url(/images/2010/ico-bullet-arrow03.gif) no-repeat 0 20%}#loginpop{display:none}td img{vertical-align:middle}div img{vertical-align:middle}
 </style>
 <script language="JavaScript">
 <!--
@@ -155,314 +103,45 @@ jQuery.noConflict();
 <script type="text/javascript" src="./elepartsMain_files/jquery.bxslider.min.js"></script>
 <link href="./elepartsMain_files/jquery.bxslider.css" rel="stylesheet" type="text/css" media="screen">
 <script type="text/javascript">
-	jQuery(document).ready(function(){
-		slider2_slider = jQuery('#slider2').bxSlider({
-			pause:4000, controls:false, randomStart:true
-		});
-
-		slider3_slider = jQuery('#slider3').bxSlider({
-			pause:4000, pager:false, randomStart:true, nextSelector:'#dailylowprice_next', prevSelector:'#dailylowprice_prev', prevText: '<img src=/images/2010/ico-btn-pgselect01.gif width=19 height=19>', nextText: '<img src=/images/2010/ico-btn-pgselect02.gif width=19 height=19 border=0>'
-		});
-
-		banner_new_brand = jQuery('#new_brand').bxSlider({
-			minSlides: 7, maxSlides: 7, moveSlides:1, slideWidth: 750, slideMargin: 20, pause:4000, speed: 300, pager:false
-		});
-
-		banner_1st_slider = jQuery('#top_banner_1st').bxSlider({
-			mode:'fade', pause:4000, pager:false, onSlideBefore:function(NULL, oldIndex, newIndex){ 
-				//alert(jQuery('#bannertitle'+newIndex).attr('eventbg'));
-				var newbg = jQuery('#bannertitle'+newIndex).attr('eventbg');
-				var newtxt = jQuery('#bannertitle'+newIndex).attr('eventtxt');
-				jQuery('#bannertitle'+oldIndex).css('color','#686969').css('background-color','#f8f8fb');
-				jQuery('#bannertitle'+newIndex).css('color',newtxt).css('background-color',newbg);
-
-			}
-		});
-
-		banner_top_banner_2nd = jQuery('#top_banner_2nd').bxSlider({
-			pause:8000, pager:false
-		});
-
-		banner_9_slider = jQuery('#brandzone_slider').bxSlider({
-			mode:'fade', pause:4000, pager:false, controls:false, onSlideBefore:function(NULL, oldIndex, newIndex){ 
-				var prev_orgimg = '/data/banner/' + jQuery('#brandzone_menu'+oldIndex).attr('orgimg');
-				var next_selimg = '/data/banner/' + jQuery('#brandzone_menu'+newIndex).attr('selimg');
-				jQuery('#brandzone_menu'+oldIndex).attr('src', prev_orgimg);
-				jQuery('#brandzone_menu'+newIndex).attr('src', next_selimg);
-
-			}
-		});
-
-		banner_11_slider = jQuery('#categoryzone_slider').bxSlider({
-			mode:'fade', pause:4000, pager:false, controls:false, onSlideBefore:function(NULL, oldIndex, newIndex){ 
-				jQuery('#categoryzone_menu'+oldIndex).attr('src', '/images/2010/main/titlel'+oldIndex+'.gif');
-				jQuery('#categoryzone_menu'+newIndex).attr('src', '/images/2010/main/titlel'+newIndex+'_1.gif');
-
-			}
-		});
-
-		jQuery('#slider2') .mouseover(function() {slider2_slider.stopAuto();}).mouseout(function() {slider2_slider.startAuto();});
-		jQuery('#slider3') .mouseover(function() {slider3_slider.stopAuto();}).mouseout(function() {slider3_slider.startAuto();});
-		jQuery('#new_brand') .mouseover(function() {banner_new_brand.stopAuto();}).mouseout(function() {banner_new_brand.startAuto();});
-		jQuery('#td_top_banner_1st') .mouseover(function() {banner_1st_slider.stopAuto();}).mouseout(function() {banner_1st_slider.startAuto();});
-		jQuery('#top_banner_2nd') .mouseover(function() {banner_top_banner_2nd.stopAuto();}).mouseout(function() {banner_top_banner_2nd.startAuto();});
-		jQuery('#brandzone_table') .mouseover(function() {banner_9_slider.stopAuto();}).mouseout(function() {banner_9_slider.startAuto();});
-		jQuery('#categoryzone_table') .mouseover(function() {banner_11_slider.stopAuto();}).mouseout(function() {banner_11_slider.startAuto();});
-
-		rss_load();
-
-		setTimeout(function(){
-			banner_new_brand.startAuto();
-			slider2_slider.startAuto();
-			slider3_slider.startAuto();
-			banner_1st_slider.startAuto();
-			banner_top_banner_2nd.startAuto();
-			banner_9_slider.startAuto();
-			banner_11_slider.startAuto();
-		}, 500);
-
-		//이벤트 배너가 1개일경우 슬라이드 하지 않음
-		setTimeout(function(){ 
-			if(slider2_slider.getSlideCount()==1) slider2_slider.destroySlider();		
-		}, 3000);
-
-	});	
-
-	function banner1_click(n){
-		banner_1st_slider.goToSlide(n);
-		return false;
-	}
-
-	function banner9_click(n){
-		banner_9_slider.goToSlide(n);
-		return false;
-	}
-
-	function banner11_click(n){
-		banner_11_slider.goToSlide(n);
-		return false;
-	}
+	function banner1_click(a){return banner_1st_slider.goToSlide(a),!1}function banner9_click(a){return banner_9_slider.goToSlide(a),!1}function banner11_click(a){return banner_11_slider.goToSlide(a),!1}jQuery(document).ready(function(){slider2_slider=jQuery("#slider2").bxSlider({pause:4e3,controls:!1,randomStart:!0}),slider3_slider=jQuery("#slider3").bxSlider({pause:4e3,pager:!1,randomStart:!0,nextSelector:"#dailylowprice_next",prevSelector:"#dailylowprice_prev",prevText:"<img src=/images/2010/ico-btn-pgselect01.gif width=19 height=19>",nextText:"<img src=/images/2010/ico-btn-pgselect02.gif width=19 height=19 border=0>"}),banner_new_brand=jQuery("#new_brand").bxSlider({minSlides:7,maxSlides:7,moveSlides:1,slideWidth:750,slideMargin:20,pause:4e3,speed:300,pager:!1}),banner_1st_slider=jQuery("#top_banner_1st").bxSlider({mode:"fade",pause:4e3,pager:!1,onSlideBefore:function(a,b,c){var d=jQuery("#bannertitle"+c).attr("eventbg"),e=jQuery("#bannertitle"+c).attr("eventtxt");jQuery("#bannertitle"+b).css("color","#686969").css("background-color","#f8f8fb"),jQuery("#bannertitle"+c).css("color",e).css("background-color",d)}}),banner_top_banner_2nd=jQuery("#top_banner_2nd").bxSlider({pause:8e3,pager:!1}),banner_9_slider=jQuery("#brandzone_slider").bxSlider({mode:"fade",pause:4e3,pager:!1,controls:!1,onSlideBefore:function(a,b,c){var d="/data/banner/"+jQuery("#brandzone_menu"+b).attr("orgimg"),e="/data/banner/"+jQuery("#brandzone_menu"+c).attr("selimg");jQuery("#brandzone_menu"+b).attr("src",d),jQuery("#brandzone_menu"+c).attr("src",e)}}),banner_11_slider=jQuery("#categoryzone_slider").bxSlider({mode:"fade",pause:4e3,pager:!1,controls:!1,onSlideBefore:function(a,b,c){jQuery("#categoryzone_menu"+b).attr("src","/images/2010/main/titlel"+b+".gif"),jQuery("#categoryzone_menu"+c).attr("src","/images/2010/main/titlel"+c+"_1.gif")}}),jQuery("#slider2").mouseover(function(){slider2_slider.stopAuto()}).mouseout(function(){slider2_slider.startAuto()}),jQuery("#slider3").mouseover(function(){slider3_slider.stopAuto()}).mouseout(function(){slider3_slider.startAuto()}),jQuery("#new_brand").mouseover(function(){banner_new_brand.stopAuto()}).mouseout(function(){banner_new_brand.startAuto()}),jQuery("#td_top_banner_1st").mouseover(function(){banner_1st_slider.stopAuto()}).mouseout(function(){banner_1st_slider.startAuto()}),jQuery("#top_banner_2nd").mouseover(function(){banner_top_banner_2nd.stopAuto()}).mouseout(function(){banner_top_banner_2nd.startAuto()}),jQuery("#brandzone_table").mouseover(function(){banner_9_slider.stopAuto()}).mouseout(function(){banner_9_slider.startAuto()}),jQuery("#categoryzone_table").mouseover(function(){banner_11_slider.stopAuto()}).mouseout(function(){banner_11_slider.startAuto()}),rss_load(),setTimeout(function(){banner_new_brand.startAuto(),slider2_slider.startAuto(),slider3_slider.startAuto(),banner_1st_slider.startAuto(),banner_top_banner_2nd.startAuto(),banner_9_slider.startAuto(),banner_11_slider.startAuto()},500),setTimeout(function(){1==slider2_slider.getSlideCount()&&slider2_slider.destroySlider()},3e3)});
 </script>
 <style type="text/css">
 <!--
 
-#banner1_title tr td{
-	text-align:center;
-	background-color:#f8f8fb;
-	color:#686969;
-	cursor: hand; cursor: pointer;
-	border-top: 1px solid #C7C9C8;
-}
-
-.mini_title {
-	color:#2a2a2a;
-	font-size: 12px;
-	margin-top:20px;
-}
-
-.notice {
-	margin-top:15px;
-}
-
-.notice th{
-	height: 22px;
-	border-bottom: 1px solid #cdcdcd;
-	text-align:left;
-	background:url('/images/2010/ico-bullet-arrow03.gif') no-repeat right 50%;
-	cursor: hand; cursor: pointer;
-	color:#2a2a2a;
-}
-
-.notice tr td {
-	padding: 5px 0 0 0;
-}
-
-.notice tr td ul li {
-	list-style:none;
-	color: #696969;
-	font-size: 11px;
-	line-height: 18px;
-}
-
-.lowprice_pn {
-}
-
-.lowprice_pn img {
-	margin:0 2px;
-	display:inline !important;
-	vertical-align:-2px;
-}
-
-.lowprice_pn a{
-	color:#2c2c2c;
-	font:13px tahoma Dotum;
-	font-weight: bold;
-	width:auto;
-}
-.lowprice_pc a{
-	color:#6a6a6a;
-	font:11px tahoma Dotum;
-}
-.lowprice_pr {
-	background:url("/images/2010/ico-price01.gif") no-repeat 0 50%;
-	padding-left:14px;
-	color:#fe7200;
-	font:16px tahoma Dotum;
-	font-weight: bold;
-}
-
-
-.line3limit {
-	width:238px;
-	height:4em;
-	overflow: hidden;
-}
-
-#mediaele th{
-	height: 28px !important;
-	color:#6d6d6d;
-	border: 1px solid #ccccce;
-	font-weight: normal;
-	padding:0px;
-}
-
-.mediaele_tab0{
-	text-align: left;
-	border-top-style: none !important;
-	border-right-style: none !important;
-	border-bottom-style: solid !important;
-	border-left-style: none !important;
-}
-
-.mediaele_t_now{
-	border-bottom-style: none !important;
-	font-weight: bold !important;
-	color:#4a4a4a !important;
-}
-
-.mediaele_t_no{
-	border: 1px solid #e2e2e4;
-	border-top-style: none;
-	border-right-style: none;
-	border-bottom-style: solid !important;
-	border-left-style: none;
-	font-weight: normal !important;
-	color:#6d6d6d !important;
-}
-
-#mediaele_banner img{
-	margin-bottom:3px;
-}
-
-#main_brand_t1{
-	float:left;
-	width:245px;
-	height:24px;
-}
-#main_brand_t2{
-	float:right;
-	height:24px;
-	padding-right:10px;
-	background:url('/images/2010/ico-bullet-arrow03.gif') no-repeat right 4px;
-	color:#454545;
-	font-size: 11px;
-
-}
-.main_brand_logo{
-	margin:10px 2px;
-	float:left;
-}
-#main_fieldtestlist{
-	list-style: none;
-	margin-top: 9px;
-}
-#main_fieldtestlist li{
-	color:#6a6a6a;
-	font-size: 11px;
-	margin-top: 5px;
-}
-
-#media_wrapper{
-	padding-top:10px;
-	border-bottom: 1px solid #e0e0e1;
-	
-}
-
-#blog {
-	width:360px;
-	height:430px;
-	float:right;
-	overflow-y:hidden;
-}
-
-#blogrss {
-	list-style: none;
-	margin:0;
-}
-
-#twitter_update_list {
-	list-style: none;
-	margin:0;
-}
-
-#twitter_update_list li{
-	font-size: 12px;
-	color:#545454;
-	padding:7px 0 7px 23px;
-	background:url('/images/2010/twico.gif') no-repeat left 7px;
-	border-bottom: 1px solid #e0e0e1;
-	display:none;
-}
-
-#twitter_update_list a {
-	color:#0000ff;
-	text-decoration: none;
-}
-
-#twitter_update_list .time {
-	color:#D3D3D3 !important;
-}
-
-.tw_time {
-	font-size: 11px;
-	color:#545454 !important;
-	text-decoration: none;
-}
-
-.blogli {
-	padding-left:23px !important;
-	background:url('/images/2010/blogico.gif') no-repeat left 7px !important;
-}
-
-.blogli a{
-	color:#545454 !important;
-
-}
-
-#main_middle_banner ul{
-	list-style: none;
-	margin:0;
-	padding:0;
-}
-
-#main_middle_banner ul li{
-	display: inline;
-	margin:0;
-	padding:0;
-}
-
-#main_middle_banner img{
-	margin:0;
-	padding:0;
-}
-
-#top_banner_1st {
-	
-}
-
-#top_banner_1st li{
-	
-}
+#banner1_title tr td{text-align:center;background-color:#f8f8fb;color:#686969;cursor:hand;cursor:pointer;border-top:1px solid #C7C9C8}
+.mini_title{color:#2a2a2a;font-size:12px;margin-top:20px}
+.notice{margin-top:15px}
+.notice th{height:22px;border-bottom:1px solid #cdcdcd;text-align:left;background:url(/images/2010/ico-bullet-arrow03.gif) no-repeat right 50%;cursor:hand;cursor:pointer;color:#2a2a2a}
+.notice tr td{padding:5px 0 0}
+.notice tr td ul li{list-style:none;color:#696969;font-size:11px;line-height:18px}
+.lowprice_pn img{margin:0 2px;display:inline!important;vertical-align:-2px}
+.lowprice_pn a{color:#2c2c2c;font:13px tahoma Dotum;font-weight:700;width:auto}
+.lowprice_pc a{color:#6a6a6a;font:11px tahoma Dotum}
+.lowprice_pr{background:url(/images/2010/ico-price01.gif) no-repeat 0 50%;padding-left:14px;color:#fe7200;font:16px tahoma Dotum;font-weight:700}
+.line3limit{width:238px;height:4em;overflow:hidden}
+#mediaele th{height:28px!important;color:#6d6d6d;border:1px solid #ccccce;font-weight:400;padding:0}
+.mediaele_tab0{text-align:left;border-style:none none solid!important}
+.mediaele_t_now{border-bottom-style:none!important;font-weight:700!important;color:#4a4a4a!important}
+.mediaele_t_no{border:1px solid #e2e2e4;font-weight:400!important;color:#6d6d6d!important;border-style:none none solid!important}
+#mediaele_banner img{margin-bottom:3px}
+#main_brand_t1{float:left;width:245px;height:24px}
+#main_brand_t2{float:right;height:24px;padding-right:10px;background:url(/images/2010/ico-bullet-arrow03.gif) no-repeat right 4px;color:#454545;font-size:11px}
+.main_brand_logo{margin:10px 2px;float:left}
+#main_fieldtestlist{list-style:none;margin-top:9px}
+#main_fieldtestlist li{color:#6a6a6a;font-size:11px;margin-top:5px}
+#media_wrapper{padding-top:10px;border-bottom:1px solid #e0e0e1}
+#blog{width:360px;height:430px;float:right;overflow-y:hidden}
+#blogrss{list-style:none;margin:0}
+#twitter_update_list{list-style:none;margin:0}
+#twitter_update_list li{font-size:12px;color:#545454;padding:7px 0 7px 23px;background:url(/images/2010/twico.gif) no-repeat left 7px;border-bottom:1px solid #e0e0e1;display:none}
+#twitter_update_list a{color:#00f;text-decoration:none}
+#twitter_update_list .time{color:#D3D3D3!important}
+.tw_time{font-size:11px;color:#545454!important;text-decoration:none}
+.blogli{padding-left:23px!important;background:url(/images/2010/blogico.gif) no-repeat left 7px!important}
+.blogli a{color:#545454!important}
+#main_middle_banner ul{list-style:none;margin:0;padding:0}
+#main_middle_banner ul li{display:inline;margin:0;padding:0}
+#main_middle_banner img{margin:0;padding:0}
 
 -->
 </style>
@@ -823,259 +502,7 @@ function topcategoryview(v){
 <script language="javascript">
 <!--
 //상품 리스트들에서 quickview quickfun 관련 새로 만든 함수
-jQuery.fn.center = function(parent) {
-    if (parent) {
-        parent = this.parent();
-    } else {
-        parent = window;
-    }
-    this.css({
-        "position": "absolute",
-        "top": (((jQuery(parent).height() - this.outerHeight()) / 2) + jQuery(parent).scrollTop() + "px"),
-        "left": (((jQuery(parent).width() - this.outerWidth()) / 2) + jQuery(parent).scrollLeft() + "px")
-    });
-return this;
-}
-
-function DracoopenwinClose(){
-	jQuery("#create_openwin").css('display','none');
-}
-
-function DracoquickView(prcode){
-	if(document.getElementById && !document.getElementById("create_openwin"))
-	{
-		jQuery('<div/>', {  
-			id: 'create_openwin'
-		}).appendTo('body');
-	}
-	jQuery("#create_openwin").css('display','none');
-	jQuery("#create_openwin").css('position','absolute');
-	jQuery("#create_openwin").css('zIndex','1');
-	jQuery("#create_openwin").css('width','550');
-	jQuery("#create_openwin").css('height','400');
-	//movecenter("create_openwin",550,400);
-	jQuery("#create_openwin").center();
-
-
-	jQuery.get(
-		"../front/product.quickview.xml_utf8.php",
-		{productcode: prcode},
-		function(data) {
-			jQuery("#create_openwin").html(data);
-			jQuery("#create_openwin").css('display','block');
-			var theHandle = document.getElementById("layerbox-top");
-			var theRoot = document.getElementById("create_openwin");
-			Drag.init(theHandle, theRoot);
-	});
-
-}
-
-function DracoquickFun(prcode, separator){
-	if(document.getElementById && !document.getElementById("create_openwin"))
-	{
-		jQuery('<div/>', {  
-			id: 'create_openwin'
-		}).appendTo('body');
-	}
-	jQuery("#create_openwin").css('display','none');
-	jQuery("#create_openwin").css('position','absolute');
-	jQuery("#create_openwin").css('zIndex','1');
-	jQuery("#create_openwin").css('width','350');
-	jQuery("#create_openwin").css('height','400');
-	//movecenter("create_openwin",350,400);
-	jQuery("#create_openwin").center();
-
-	jQuery.get(
-		"../front/product.quickfun.xml_utf8.php",
-		{productcode: prcode, qftype: separator},
-		function(data) {
-			jQuery("#create_openwin").html(data);
-			jQuery("#create_openwin").css('display','block');
-			var theHandle = document.getElementById("layerbox-top");
-			var theRoot = document.getElementById("create_openwin");
-			Drag.init(theHandle, theRoot);
-	});
-
-}
-
-var timeId;
-
-function throttle(callback, ms) {
-    if (timeId) {
-      clearTimeout(timeId);
-    }
-
-    timeId = setTimeout(callback, ms)
-}
-
-function AutoSearch(o) {
-	var key=o.keyCode;
-	var ss = jQuery("#ss").val();
-	if (key==13) {
-		try {
-			if(ss.length<2) {
-				alert("2글자 이상 입력해주세요.");
-				jQuery("#ss").focus();
-				return;
-			}
-			document.search_tform.keyword_word.value = ss;
-			document.search_tform.action="../search/keyword_search.php";
-			document.search_tform.submit();
-		} catch (e) {}
-	}else{
-		if(key==32) return 1;
-		else if(ss.length<2) {jQuery("#autosearchresult").hide(); return 1;}
-		throttle(AutoSearchAct,300);
-	}
-}
-
-function PressSearch(){
-	var ss = jQuery("#ss").val();
-	if(ss.length<2) {
-		alert("2글자 이상 입력해주세요.");
-		jQuery("#ss").focus();
-		return;
-	}
-	document.search_tform.keyword_word.value = ss;
-	document.search_tform.action="../search/keyword_search.php";
-	document.search_tform.submit();
-}
-
-var AutoSearchLoading = "<div id='auto_loading'>결과 불러오는 중... <img src='/images/2010/ajax-loader_fb.gif'></div>"
-var ss_last;
-
-function AutoSearchAct(){
-	var ss = jQuery("#ss").val();
-	ss_last = ss;
-	var limit = 50;
-
-	var search_count1=0;
-	var search_count2=0;
-	var search_count3=0;
-	var search_count4=0;
-	var search_count5=0;
-	var total_count = 0;
-	var epxsearch=0;
-
-	jQuery("#autosearchresult").show().html(AutoSearchLoading)
-	if(ss.length<2) {jQuery("#autosearchresult").hide(); return 1;}
-
-	if(typeof ajax_qst1 != 'undefined') ajax_qst1.abort();
-	if(typeof ajax_qst2 != 'undefined') ajax_qst2.abort();
-	if(typeof ajax_qst3 != 'undefined') ajax_qst3.abort();
-	if(typeof ajax_qst4 != 'undefined') ajax_qst4.abort();
-
-	jQuery('*').filter(function(){
-		return jQuery(this).css("cursor") === 'auto';
-	}).css('cursor', 'progress');
-
-	var ajax_qst1 = jQuery.ajax({
-	  url: "../main/search1.php",
-	  data: { q: ss, limit: limit},
-	  timeout: 2000,
-	  cache: false
-	}).done(function(data1) {
-		if(data1.length>0){
-			data1 = '<ul id="autos_result">' + data1;
-
-			jQuery("#autosearchresult").html('').width(308).height(300);
-			jQuery("#autosearchresult").html(data1).show().scrollTop(0).scrollLeft(0);
-			search_count1 = parseInt(jQuery("#search_count1").val());
-			total_count = search_count1;
-			epxsearch = parseInt(jQuery("#epxsearch").val());
-			var past_list1 = jQuery("#past_list1").val();
-
-			if(limit>total_count && epxsearch==0 && ss_last==ss){
-				jQuery("#autosearchresult").append(AutoSearchLoading);
-				var ajax_qst2 = jQuery.ajax({
-				  url: "../main/search2.php",
-				  data: { q: ss, limit: (limit-total_count), past_list:past_list1},
-				  timeout: 2000,
-				  cache: false
-				}).done(function(data2) {
-					  if(data2.length>0){
-						  jQuery("#autosearchresult").html(data1+data2).scrollTop(0).scrollLeft(0);
-						  search_count2 = parseInt(jQuery("#search_count2").val());	
-
-
-						  total_count = total_count + search_count2;
-						  var past_list2 = jQuery("#past_list2").val();			  
-						  
-						  if(limit>total_count && epxsearch==0 && ss_last==ss){
-							jQuery("#autosearchresult").append(AutoSearchLoading);
-							var ajax_qst3 = jQuery.ajax({
-							  url: "../main/search3.php",
-							  data: { q: ss, limit: (limit-total_count), past_list:past_list2},
-							  timeout: 2000,
-							  cache: false
-							}).done(function(data3) {
-								  if(data3.length>0){
-									  jQuery("#autosearchresult").html(data1+data2+data3).scrollTop(0).scrollLeft(0);
-									  search_count3 = parseInt(jQuery("#search_count3").val());
-									  total_count = total_count + search_count3;
-									  var past_list3 = jQuery("#past_list3").val();
-
-									  if(limit>total_count && epxsearch==0 && ss_last==ss){
-										jQuery("#autosearchresult").append(AutoSearchLoading);
-										var ajax_qst4 = jQuery.ajax({
-										  url: "../main/search4.php",
-										  data: { q: ss, limit: (limit-total_count), past_list:past_list3},
-										  timeout: 3000,
-										  cache: false
-										}).done(function(data4) {
-											  if(data4.length>0){
-												  jQuery("#autosearchresult").html(data1+data2+data3+data4).scrollTop(0).scrollLeft(0);
-												  search_count4 = parseInt(jQuery("#search_count4").val());
-												  total_count = total_count + search_count4;
-												  AutoSearchEnd(ss, total_count, epxsearch);
-											  }
-										  }).fail(function() {AutoSearchEnd(ss, total_count, epxsearch)});
-									  }else AutoSearchEnd(ss, total_count, epxsearch);
-								  }
-							  }).fail(function() {AutoSearchEnd(ss, total_count, epxsearch)});
-						  }else AutoSearchEnd(ss, total_count, epxsearch);
-					  }					  
-				}).fail(function() {AutoSearchEnd(ss, total_count, epxsearch)});
-			}else AutoSearchEnd(ss, total_count, epxsearch);
-			
-		}
-		else jQuery("#autosearchresult").hide();
-	}).fail(function() {AutoSearchEnd(ss, total_count, epxsearch)});
-	if(total_count==0) jQuery("#autosearchresult").hide();
-	return 1;	
-}
-
-function AutoSearchEnd(ss, cnt, epxsearch){
-	if(ss_last!=ss) return 0;
-	if(jQuery("#moresearchtxt").html()!=null) return 0;
-
-	if(cnt==0) jQuery("#autosearchresult").html('검색어 : '+ss+' <br>일치하는 상품명이나 카테고리, 브랜드가 없습니다.');
-	else if(epxsearch==0) jQuery("#autosearchresult").append("<div style='text-align:right' id='moresearchtxt'><a href=\"/search/keyword_search.php?s_i=&c_code=&search_colum=productname&keyword_word="+ss+"\">상품 더 검색하기 >></a></div>").scrollTop(0).scrollLeft(0);
-
-	var basename = "main.php";
-	jQuery("#autosearchresult").append('</ul>');
-
-	var width = jQuery("#autosearchresult ul").width()+20;
-	var width_limit = 650;
-	if(width<308) width=308;
-	if(width_limit>width) jQuery("#autosearchresult").width(width);
-	else jQuery("#autosearchresult").width(width_limit);
-
-	//jQuery("#autosearchresult").width();
-
-	var height = jQuery("#autosearchresult ul").height()+45;
-	if(basename=="productdetail.php") var height_limit = 650; //제품상세 페이지는 pdf표시 때문에 가려질수 있으므로 길이 제한
-	else var height_limit = document.body.clientHeight-200;
-	if(height<300) height=300;
-	if(height_limit>height) jQuery("#autosearchresult").height(height);
-	else jQuery("#autosearchresult").height(height_limit);
-
-	jQuery("#auto_loading").hide();
-
-	jQuery('*').filter(function(){
-		return jQuery(this).css("cursor") === 'progress';
-	}).css('cursor', 'auto');
-}
+function DracoopenwinClose(){jQuery("#create_openwin").css("display","none")}function DracoquickView(a){document.getElementById&&!document.getElementById("create_openwin")&&jQuery("<div/>",{id:"create_openwin"}).appendTo("body"),jQuery("#create_openwin").css("display","none"),jQuery("#create_openwin").css("position","absolute"),jQuery("#create_openwin").css("zIndex","1"),jQuery("#create_openwin").css("width","550"),jQuery("#create_openwin").css("height","400"),jQuery("#create_openwin").center(),jQuery.get("../front/product.quickview.xml_utf8.php",{productcode:a},function(a){jQuery("#create_openwin").html(a),jQuery("#create_openwin").css("display","block");var b=document.getElementById("layerbox-top"),c=document.getElementById("create_openwin");Drag.init(b,c)})}function DracoquickFun(a,b){document.getElementById&&!document.getElementById("create_openwin")&&jQuery("<div/>",{id:"create_openwin"}).appendTo("body"),jQuery("#create_openwin").css("display","none"),jQuery("#create_openwin").css("position","absolute"),jQuery("#create_openwin").css("zIndex","1"),jQuery("#create_openwin").css("width","350"),jQuery("#create_openwin").css("height","400"),jQuery("#create_openwin").center(),jQuery.get("../front/product.quickfun.xml_utf8.php",{productcode:a,qftype:b},function(a){jQuery("#create_openwin").html(a),jQuery("#create_openwin").css("display","block");var b=document.getElementById("layerbox-top"),c=document.getElementById("create_openwin");Drag.init(b,c)})}function throttle(a,b){timeId&&clearTimeout(timeId),timeId=setTimeout(a,b)}function AutoSearch(a){var b=a.keyCode,c=jQuery("#ss").val();if(13==b)try{if(c.length<2)return alert("2글자 이상 입력해주세요."),void jQuery("#ss").focus();document.search_tform.keyword_word.value=c,document.search_tform.action="../search/keyword_search.php",document.search_tform.submit()}catch(a){}else{if(32==b)return 1;if(c.length<2)return jQuery("#autosearchresult").hide(),1;throttle(AutoSearchAct,300)}}function PressSearch(){var a=jQuery("#ss").val();return a.length<2?(alert("2글자 이상 입력해주세요."),void jQuery("#ss").focus()):(document.search_tform.keyword_word.value=a,document.search_tform.action="../search/keyword_search.php",void document.search_tform.submit())}function AutoSearchAct(){var a=jQuery("#ss").val();ss_last=a;var b=50,c=0,d=0,e=0,f=0,h=0,i=0;if(jQuery("#autosearchresult").show().html(AutoSearchLoading),a.length<2)return jQuery("#autosearchresult").hide(),1;"undefined"!=typeof j&&j.abort(),"undefined"!=typeof ajax_qst2&&ajax_qst2.abort(),"undefined"!=typeof ajax_qst3&&ajax_qst3.abort(),"undefined"!=typeof ajax_qst4&&ajax_qst4.abort(),jQuery("*").filter(function(){return"auto"===jQuery(this).css("cursor")}).css("cursor","progress");var j=jQuery.ajax({url:"../main/search1.php",data:{q:a,limit:b},timeout:2e3,cache:!1}).done(function(g){if(g.length>0){g='<ul id="autos_result">'+g,jQuery("#autosearchresult").html("").width(308).height(300),jQuery("#autosearchresult").html(g).show().scrollTop(0).scrollLeft(0),c=parseInt(jQuery("#search_count1").val()),h=c,i=parseInt(jQuery("#epxsearch").val());var j=jQuery("#past_list1").val();if(b>h&&0==i&&ss_last==a){jQuery("#autosearchresult").append(AutoSearchLoading);jQuery.ajax({url:"../main/search2.php",data:{q:a,limit:b-h,past_list:j},timeout:2e3,cache:!1}).done(function(c){if(c.length>0){jQuery("#autosearchresult").html(g+c).scrollTop(0).scrollLeft(0),d=parseInt(jQuery("#search_count2").val()),h+=d;var j=jQuery("#past_list2").val();if(b>h&&0==i&&ss_last==a){jQuery("#autosearchresult").append(AutoSearchLoading);jQuery.ajax({url:"../main/search3.php",data:{q:a,limit:b-h,past_list:j},timeout:2e3,cache:!1}).done(function(d){if(d.length>0){jQuery("#autosearchresult").html(g+c+d).scrollTop(0).scrollLeft(0),e=parseInt(jQuery("#search_count3").val()),h+=e;var j=jQuery("#past_list3").val();if(b>h&&0==i&&ss_last==a){jQuery("#autosearchresult").append(AutoSearchLoading);jQuery.ajax({url:"../main/search4.php",data:{q:a,limit:b-h,past_list:j},timeout:3e3,cache:!1}).done(function(b){b.length>0&&(jQuery("#autosearchresult").html(g+c+d+b).scrollTop(0).scrollLeft(0),f=parseInt(jQuery("#search_count4").val()),h+=f,AutoSearchEnd(a,h,i))}).fail(function(){AutoSearchEnd(a,h,i)})}else AutoSearchEnd(a,h,i)}}).fail(function(){AutoSearchEnd(a,h,i)})}else AutoSearchEnd(a,h,i)}}).fail(function(){AutoSearchEnd(a,h,i)})}else AutoSearchEnd(a,h,i)}else jQuery("#autosearchresult").hide()}).fail(function(){AutoSearchEnd(a,h,i)});return 0==h&&jQuery("#autosearchresult").hide(),1}function AutoSearchEnd(a,b,c){if(ss_last!=a)return 0;if(null!=jQuery("#moresearchtxt").html())return 0;0==b?jQuery("#autosearchresult").html("검색어 : "+a+" <br>일치하는 상품명이나 카테고리, 브랜드가 없습니다."):0==c&&jQuery("#autosearchresult").append("<div style='text-align:right' id='moresearchtxt'><a href=\"/search/keyword_search.php?s_i=&c_code=&search_colum=productname&keyword_word="+a+'">상품 더 검색하기 >></a></div>').scrollTop(0).scrollLeft(0);var d="main.php";jQuery("#autosearchresult").append("</ul>");var e=jQuery("#autosearchresult ul").width()+20,f=650;e<308&&(e=308),f>e?jQuery("#autosearchresult").width(e):jQuery("#autosearchresult").width(f);var g=jQuery("#autosearchresult ul").height()+45;if("productdetail.php"==d)var h=650;else var h=document.body.clientHeight-200;g<300&&(g=300),h>g?jQuery("#autosearchresult").height(g):jQuery("#autosearchresult").height(h),jQuery("#auto_loading").hide(),jQuery("*").filter(function(){return"progress"===jQuery(this).css("cursor")}).css("cursor","auto")}jQuery.fn.center=function(a){return a=a?this.parent():window,this.css({position:"absolute",top:(jQuery(a).height()-this.outerHeight())/2+jQuery(a).scrollTop()+"px",left:(jQuery(a).width()-this.outerWidth())/2+jQuery(a).scrollLeft()+"px"}),this};var timeId,AutoSearchLoading="<div id='auto_loading'>결과 불러오는 중... <img src='/images/2010/ajax-loader_fb.gif'></div>",ss_last;
 //-->
 </script>
 
@@ -1084,168 +511,30 @@ function AutoSearchEnd(ss, cnt, epxsearch){
 
 <style type="text/css">
 <!--
-  .autos_red{
-	  color:red;
-  }
-
-  .autos_c1{
-	  color:#FF0000;
-  }
-
-  .autos_c2{
-	  color:#0000FF;
-  }
-
-  .autos_c3{
-	  color:#008000;
-  }
-
-  .autos_c4{
-	  color:#800080;
-  }
-
-  .autos_c5{
-	  color:#FF8000;
-  }
-
-  .autos_pn{
-	  color:gray; 
-	  margin-left:20px;
-  }
-  .autos_count{
-	  color:gray;
-	  font-weight:normal;	  
-  }
-  #autosearchresult{
-	    overflow-x:hidden;
-		border:1px solid #000000;
-		padding: 0;
-		text-align: left; 
-		-webkit-box-shadow: #666 0px 2px 3px;
-		-moz-box-shadow: #666 0px 2px 3px;
-		box-shadow: #666 0px 2px 3px;
-		background: #FFFFFF;
-  }
-
-  #autosearchresult ul{
-	list-style-type:none;
-  }
-
-  #autosearchresult li{
-	  white-space:nowrap;
-	  font-weight:bold;
-	  /*border-bottom:1px solid #DFDFDF;*/
-	  margin:5px 3px 5px 3px;
-  }
-  
-  #autosearchresult li div{
-	  font-weight:normal;
-  }
-  
-  #topcategory {
-	border: 0;
-	padding: 0;
-	text-align: center; 
-	-webkit-box-shadow: #666 0px 2px 3px;
-	-moz-box-shadow: #666 0px 2px 3px;
-	box-shadow: #666 0px 2px 3px;
-	background: #FFFFFF;
-	behavior: url(/js/PIE.htc);
-  }
-
-  #notice_right_pop{
-	border: 0;
-	padding: 0;
-	text-align: center; 
-	-webkit-box-shadow: #666 0px 2px 3px;
-	-moz-box-shadow: #666 0px 2px 3px;
-	box-shadow: #666 0px 2px 3px;
-	background: #FFFFFF;
-	behavior: url(/js/PIE.htc);
-  }
-
-  #ssl {
-    display: block;
-    padding-left: 15px;
-    text-indent: -15px;
-	padding-top:5px;
-  }
-
-  #ssl input {
-    width: 13px;
-    height: 13px;
-    padding: 0;
-    margin:0;
-    vertical-align: bottom;
-    position: relative;
-    top: -1px;
-    *overflow: hidden;
-  }
-
-  .ie10 #ssl input {
-	top: -5px;
-  }
-
-	#sub_cat_menu_container{
-		table-layout:fixed;
-	}
-	#sub_cat_menu_container td{
-		padding: 0px 3px 3px 3px;
-	}
-	#sub_cat_menu {
-		
-	}
-	#sub_cat_menu th{
-		font-family: Doutum;
-		font-size: 12px;
-		font-weight:bold;
-		color:#2c2c2c;
-		padding: 12px 0px;
-	}
-	#sub_cat_menu td a{
-		font-size: 12px;
-		font-weight:normal;
-		color:#5c5c5c;
-		text-decoration: none;
-		line-height:19px;
-		padding-left:6px;
-	}
-
-	#sub_cat_menu div{
-		width:120px;
-		margin: 0 auto;
-		text-align:left;
-	}
-
-	#sub_cat_menu td a:hover{
-		font-size: 12px;
-		color: #fe6d04;
-		font-weight:normal;
-		text-decoration: underline;
-		line-height:19px;
-		padding-left:6px;
-		background-image:url(/images/main201005/ico_bullet_arrow.gif);
-		background-position:left 50%;
-		background-repeat:no-repeat;
-	}
-
-	.sub_cat_menu_td{
-		border-top-width: 1px;
-		border-right-width: 0px;
-		border-bottom-width: 0px;
-		border-left-width: 0px;
-		border-top-style: solid;
-		border-right-style: solid;
-		border-bottom-style: solid;
-		border-left-style: solid;
-		border-top-color: #e1e2e3;
-		border-right-color: #e1e2e3;
-		border-bottom-color: #e1e2e3;
-		border-left-color: #e1e2e3;
-		padding-top: 12px !important;
-		padding-bottom: 15px !important;
-		text-align: center;
-	}
+  .autos_red{color:red}
+.autos_c1{color:red}
+.autos_c2{color:#00F}
+.autos_c3{color:green}
+.autos_c4{color:purple}
+.autos_c5{color:#FF8000}
+.autos_pn{color:gray;margin-left:20px}
+.autos_count{color:gray;font-weight:400}
+#autosearchresult{overflow-x:hidden;border:1px solid #000;padding:0;text-align:left;-webkit-box-shadow:#666 0 2px 3px;-moz-box-shadow:#666 0 2px 3px;box-shadow:#666 0 2px 3px;background:#FFF}
+#autosearchresult ul{list-style-type:none}
+#autosearchresult li{white-space:nowrap;font-weight:700;margin:5px 3px}
+#autosearchresult li div{font-weight:400}
+#topcategory{border:0;padding:0;text-align:center;-webkit-box-shadow:#666 0 2px 3px;-moz-box-shadow:#666 0 2px 3px;box-shadow:#666 0 2px 3px;background:#FFF;behavior:url(/js/PIE.htc)}
+#notice_right_pop{border:0;padding:0;text-align:center;-webkit-box-shadow:#666 0 2px 3px;-moz-box-shadow:#666 0 2px 3px;box-shadow:#666 0 2px 3px;background:#FFF;behavior:url(/js/PIE.htc)}
+#ssl{display:block;padding-left:15px;text-indent:-15px;padding-top:5px}
+#ssl input{width:13px;height:13px;padding:0;margin:0;vertical-align:bottom;position:relative;top:-1px;*overflow:hidden}
+.ie10 #ssl input{top:-5px}
+#sub_cat_menu_container{table-layout:fixed}
+#sub_cat_menu_container td{padding:0 3px 3px}
+#sub_cat_menu th{font-family:Doutum;font-size:12px;font-weight:700;color:#2c2c2c;padding:12px 0}
+#sub_cat_menu td a{font-size:12px;font-weight:400;color:#5c5c5c;text-decoration:none;line-height:19px;padding-left:6px}
+#sub_cat_menu div{width:120px;margin:0 auto;text-align:left}
+#sub_cat_menu td a:hover{font-size:12px;color:#fe6d04;font-weight:400;text-decoration:underline;line-height:19px;padding-left:6px;background-image:url(/images/main201005/ico_bullet_arrow.gif);background-position:left 50%;background-repeat:no-repeat}
+.sub_cat_menu_td{padding-top:12px!important;padding-bottom:15px!important;text-align:center;border-color:#e1e2e3;border-style:solid;border-width:1px 0 0}
 -->
 </style>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" rel="draco2010_top" style="table-layout: fixed; background-repeat:repeat-x; background-image: url(&#39;/images/2010/topbg.gif&#39;);">
