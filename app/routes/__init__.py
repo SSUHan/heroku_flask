@@ -1,3 +1,4 @@
 __all__=['controller',
          'su_point',
-         'front_task']
+         'front_task',
+         'slack']
