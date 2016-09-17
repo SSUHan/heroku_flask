@@ -1,1 +1,2 @@
-__all__ = ['su_point']
+__all__ = ['su_point',
+           'soup']
